@@ -1,5 +1,6 @@
 package com.sistemahistoriasclinicasbackend.configuraciones;
 
+import com.sistemahistoriasclinicasbackend.servicios.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,11 +22,18 @@ public class MySecurityConfig {
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
+
     @Bean
     public PasswordEncoder passwordEncoder()
     {
         return NoOpPasswordEncoder.getInstance();
     }
+
+    /*@Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception
+    {
+        auth.userDetailsService(this.userDetailsServiceIml).passwordEncoder(passwordEncoder());
+    }*/
 
     @Bean
     protected SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception
